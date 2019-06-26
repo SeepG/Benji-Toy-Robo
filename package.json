@@ -1,0 +1,17 @@
+{
+  "name": "ankitoyrobot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Seep Gulati",
+  "license": "ISC",
+  "dependencies": {
+    "eslint": "^6.0.1",
+    "express": "^4.17.1",
+    "nodemon": "^1.19.1"
+  }
+}
