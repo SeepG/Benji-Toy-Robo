@@ -16,10 +16,10 @@ app.use(cors());
 
 //Anki Robo PLACE command. Places Anki on 5*5 table-top
 const schema = {
-	position : {
+	position : Joi.object().keys({
 		x: Joi.number().max(4).min(0).required(),
 		y: Joi.number().max(4).min(0).required()
-	},
+	}).required(),
 	direction : Joi.string().valid('NORTH','EAST','WEST','SOUTH').required()
 };
 app.post("/place", (request,response) => {
@@ -69,17 +69,7 @@ app.post("/move", (request,response) => {
 
 });
 
-const validate =(req)=>{
-	const {error} = Joi.validate(req,schema);
-	if(error){
-		throw new Error(JSON.stringify(
-			{
-				status:400,
-				message: error.message
-			}
-			));
-	}
-}
+
 ////Anki Robo LEFT command
 app.post("/left", (request,response) => {
 	try {
@@ -109,8 +99,21 @@ app.post("/left", (request,response) => {
 			return response.status(400).json(customError.message);
 		}
 	}
-
 });
+
+const validate =(req)=>{
+	const {error} = Joi.validate(req,schema);
+	if(error){
+		throw new Error(JSON.stringify(
+			{
+				status:400,
+				message: error.message
+			}
+			));
+	}
+}
+
+
 // connecting to port
 app.listen(PORT, () => {
 	console.log(`Anki listens to your commands on port ${PORT}`)
