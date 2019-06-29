@@ -35,6 +35,7 @@ if(error) { //If the validation throws an error
 		return response.json(req);
 }
 });
+
 //Anki Robo MOVE command
 app.post("/move", (request,response) => {
 	try {
@@ -69,8 +70,7 @@ app.post("/move", (request,response) => {
 
 });
 
-
-////Anki Robo LEFT command
+//Anki Robo LEFT command
 app.post("/left", (request,response) => {
 	try {
 			const req = request.body;
@@ -101,6 +101,38 @@ app.post("/left", (request,response) => {
 	}
 });
 
+//Anki Robo RIGHT command
+app.post("/right", (request,response) => {
+	try {
+			const req = request.body;
+			console.log(request.body);
+			validate(req); //validation method for input
+			switch(req.direction){
+				case 'NORTH':
+					req.direction = 'EAST';
+					break;
+				case 'WEST':
+					req.direction = 'NORTH';
+					break;
+				case 'SOUTH':
+					req.direction = 'WEST';	
+					break;
+				case 'EAST':
+					req.direction = 'SOUTH';
+					break;
+			}
+				req.message = "Success!"; //validation for output not necessary, as Anki is not moving
+				return response.json(req);
+		
+	} catch (error) {
+		const customError = JSON.parse(error.message);
+		if(customError.status === 400){
+			return response.status(400).json(customError.message);
+		}
+	}
+});
+
+//joi global validation method that is used to validate all commands
 const validate =(req)=>{
 	const {error} = Joi.validate(req,schema);
 	if(error){
@@ -112,7 +144,6 @@ const validate =(req)=>{
 			));
 	}
 }
-
 
 // connecting to port
 app.listen(PORT, () => {
