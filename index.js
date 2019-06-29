@@ -1,13 +1,12 @@
 const express = require('express');
-const cors = require('cors');
-const Joi = require('joi');
+const cors = require('cors'); 
+const Joi = require('joi'); //validation dependency
 const PORT = 3000;
 
 const app = express();
 
 // in-built middleware function in express. parses incoming requests with JSON payload.
 app.use(express.json());
-// app.use(express.urlencoded());
 app.use(cors());
 
 // // testing server
@@ -41,7 +40,7 @@ app.post("/move", (request,response) => {
 	try {
 			const req = request.body;
 			console.log(request.body);
-			validate(req); //validation for input
+			validate(req); //validation method for input
 			switch(req.direction){
 				case 'NORTH':
 					req.position.y++;
@@ -71,7 +70,7 @@ app.post("/move", (request,response) => {
 });
 
 const validate =(req)=>{
-	const {error, value} = Joi.validate(req,schema);
+	const {error} = Joi.validate(req,schema);
 	if(error){
 		throw new Error(JSON.stringify(
 			{
@@ -81,7 +80,37 @@ const validate =(req)=>{
 			));
 	}
 }
+////Anki Robo LEFT command
+app.post("/left", (request,response) => {
+	try {
+			const req = request.body;
+			console.log(request.body);
+			validate(req); //validation method for input
+			switch(req.direction){
+				case 'NORTH':
+					req.direction = 'WEST';
+					break;
+				case 'WEST':
+					req.direction = 'SOUTH';
+					break;
+				case 'SOUTH':
+					req.direction = 'EAST';	
+					break;
+				case 'EAST':
+					req.direction = 'NORTH';
+					break;
+			}
+				req.message = "Success!"; //validation for output not necessary, as Anki is not moving
+				return response.json(req);
+		
+	} catch (error) {
+		const customError = JSON.parse(error.message);
+		if(customError.status === 400){
+			return response.status(400).json(customError.message);
+		}
+	}
 
+});
 // connecting to port
 app.listen(PORT, () => {
 	console.log(`Anki listens to your commands on port ${PORT}`)
