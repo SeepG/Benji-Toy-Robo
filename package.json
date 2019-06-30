@@ -60,5 +60,5 @@
       "^.+\\.jsx?$": "babel-jest"
     }
   },
-  "homepage": "https://github.com/SeepG/ticket-viewer#readme"
+  "homepage": "https://github.com/SeepG"
 }

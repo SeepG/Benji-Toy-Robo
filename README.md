@@ -1,19 +1,14 @@
-# Anki-Toy-Robo
+# Benji-Toy-Robo
 Simulation of a toy robot moving on a 5 x 5 square tabletop.
-
-Customer service tool that allows the creation and management of support tickets.
-Github Repository
 
 Author: Seep Gulati
 [Linkedin](https://www.linkedin.com/in/seepgulati) | [Twitter](https://twitter.com/seepgulati)
 
-Functionality
-
-### Demo gif
-![](./docs/demo.gif)
+### Demo video
+Please check the video in docs folder `toy-robo-demo.mov` in any movie player preferably Quick Time Player.
 
 ### Technology Stack
-Anki Toy Robot simulation is built using a simple REST API with NodeJS and Express. PostMan has been used for testing. HTML, Javascript and Bootstrap for the front-end. 
+Benji Toy Robot simulation is built using a simple REST API with NodeJS and Express. PostMan has been used for integration testing and Jest for unit testing. HTML, Javascript and Bootstrap for the front-end. 
 
 ### Architecture of application
 Back End - Nodejs & Expressjs | Front End - Javascript, HTML and Bootstrap
@@ -30,7 +25,7 @@ The first thing you need to have is Node.js on your computer.You can download th
 
 Once Node.js is installed, open a terminal and enter the `node --version` on command line to verify that it is installed correctly. This application is using Node 10.16.0 version.
 
-## Installation
+## Installation and important commands
 
 1. You need to open the repository in a code editor of your choice. I'm using visual studio code. Download link: https://code.visualstudio.com/docs/setup/mac
 
@@ -42,3 +37,5 @@ Once Node.js is installed, open a terminal and enter the `node --version` on com
 4. To view UI in the browser. Download Live server Visual Studio code.extension. Download link: https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer 
 
 5. Once live server is installed. Open Public folder and click on Index.html file and right click to open with live server. Path: http://localhost:3000
+
+6. To run tests `npm test`
