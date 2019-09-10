@@ -73,7 +73,7 @@ app.post("/avoid", (request, response) => {
     const resp = avoidCommand.Invoke(req);
     return response.json(resp);
   } catch (error) {
-    const newError = JSON.parse(error.message);
+    const newError = JSON.parse(error.messages);
     if (newError.isValidationError) {
       return response.status(400).json(newError.messages);
     }

@@ -15,6 +15,22 @@ const placeCommand = () => {
     .catch(error => showError(error));
 };
 
+const avoidCommand = () => {
+  const x = document.getElementById("x").value;
+  const y = document.getElementById("y").value;
+  const direction = document.getElementById("direction").value.toUpperCase();
+  const request = {
+    position: {
+      x,
+      y
+    },
+    direction
+  };
+  postData("/avoid", request)
+    .then(data => placeRobo(data)) // JSON-string from `response.json()` call
+    .catch(error => showError(error));
+};
+
 const moveCommand = () => {
   roboReport = getRoboReport();
   if (roboReport) {
