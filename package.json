@@ -51,7 +51,7 @@
     "nodemon": "^1.9.2"
   },
   "bugs": {
-    "url": "https://github.com/SeepG/ticket-viewer/issues"
+    "url": "https://github.com/SeepG/issues"
   },
   "jest": {
     "verbose": true,
