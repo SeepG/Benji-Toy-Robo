@@ -1,13 +1,9 @@
 # Benji-Toy-Robo
 
-Simulation of a toy robot moving on a 5 x 5 square tabletop.
+Simulation of a toy robot moving on a square tabletop.
 
 Author: Seep Gulati
 [Linkedin](https://www.linkedin.com/in/seepgulati) | [Twitter](https://twitter.com/seepgulati)
-
-### Demo video
-
-Please check the video in docs folder `toy-robo-demo.mov` in any movie player preferably Quick Time Player.
 
 ### Technology Stack
 

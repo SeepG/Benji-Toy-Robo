@@ -15,6 +15,22 @@ const placeCommand = () => {
     .catch(error => showError(error));
 };
 
+const avoidCommand = () => {
+  const x = document.getElementById("x").value;
+  const y = document.getElementById("y").value;
+  const direction = document.getElementById("direction").value.toUpperCase();
+  const request = {
+    position: {
+      x,
+      y
+    },
+    direction
+  };
+  postData("/avoid", request)
+    .then(data => placeRobo(data)) // JSON-string from `response.json()` call
+    .catch(error => showError(error));
+};
+
 const moveCommand = () => {
   roboReport = getRoboReport();
   if (roboReport) {
@@ -93,8 +109,8 @@ const postData = (url, data) => {
 //initiates first
 const createTable = () => {
   let rows = "";
-  for (let y = 4; y >= 0; y--) {
-    for (let x = 0; x < 5; x++) {
+  for (let y = 5; y >= 0; y--) {
+    for (let x = 0; x <= 5; x++) {
       rows += `<div class="grid-item" id="${x}${y}"></div>`;
     }
   }

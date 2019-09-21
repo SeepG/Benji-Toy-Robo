@@ -43,7 +43,7 @@ describe("PlaceCommand Tests", () => {
       )
     );
   });
-  it("Test place command for invalid value of x > 4", () => {
+  it("Test place command for invalid value of x > 5", () => {
     const request = {
       position: {
         x: 6,
@@ -56,7 +56,7 @@ describe("PlaceCommand Tests", () => {
       new Error(
         JSON.stringify({
           isValidationError: true,
-          messages: ["x must be less than or equal to 4"]
+          messages: ["x must be less than or equal to 5"]
         })
       )
     );

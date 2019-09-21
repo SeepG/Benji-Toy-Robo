@@ -30,6 +30,23 @@ app.post("/place", (request, response) => {
   }
 });
 
+// Robo LEFT command
+app.post("/left", (request, response) => {
+  try {
+    const req = request.body;
+    console.log(request.body);
+    const leftCommand = new LeftCommand();
+    const resp = leftCommand.Invoke(req);
+    return response.json(resp);
+  } catch (error) {
+    const newError = JSON.parse(error.message);
+    if (newError.isValidationError) {
+      return response.status(400).json(newError.messages);
+    }
+    return response.status(500).json(error.message);
+  }
+});
+
 //Robo MOVE command
 app.post("/move", (request, response) => {
   try {
@@ -47,16 +64,16 @@ app.post("/move", (request, response) => {
   }
 });
 
-// Robo LEFT command
-app.post("/left", (request, response) => {
+// Robo AVOID command
+app.post("/avoid", (request, response) => {
   try {
     const req = request.body;
     console.log(request.body);
-    const leftCommand = new LeftCommand();
-    const resp = leftCommand.Invoke(req);
+    const avoidCommand = new AvoidCommand();
+    const resp = avoidCommand.Invoke(req);
     return response.json(resp);
   } catch (error) {
-    const newError = JSON.parse(error.message);
+    const newError = JSON.parse(error.messages);
     if (newError.isValidationError) {
       return response.status(400).json(newError.messages);
     }
