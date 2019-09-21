@@ -110,7 +110,7 @@ const postData = (url, data) => {
 const createTable = () => {
   let rows = "";
   for (let y = 5; y >= 0; y--) {
-    for (let x = 0; x < 5; x++) {
+    for (let x = 0; x <= 5; x++) {
       rows += `<div class="grid-item" id="${x}${y}"></div>`;
     }
   }
